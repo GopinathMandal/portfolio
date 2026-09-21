@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Terminal, Volume2, VolumeX, Menu, X, FileText, Sparkles } from 'lucide-react';
+import profileImg from '../assets/profile.jpg';
 import { soundFx } from '../utils/soundController';
 
 interface NavbarProps {
@@ -74,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenResume }) 
           <div className="relative">
             <div className="w-10 h-10 rounded-xl overflow-hidden border-2 border-teal-400/80 shadow-lg shadow-teal-500/25 group-hover:scale-105 group-hover:border-cyan-300 transition-all duration-300 bg-slate-900">
               <img
-                src="/profile.jpg"
+                src={profileImg}
                 alt="Gopinath Mandal"
                 className="w-full h-full object-cover object-top"
               />

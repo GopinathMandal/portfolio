@@ -2,6 +2,7 @@ import React from 'react';
 import { personalInfo } from '../data/portfolioData';
 import { ArrowRight, Download, Mail, MapPin, Sparkles, Terminal, ShieldCheck, Zap } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
+import profileImg from '../assets/profile.jpg';
 import { soundFx } from '../utils/soundController';
 import confetti from 'canvas-confetti';
 
@@ -161,7 +162,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume }) => {
                   <div className="absolute -inset-1.5 bg-gradient-to-tr from-teal-400 via-cyan-400 to-purple-600 rounded-2xl blur-sm opacity-80 group-hover:opacity-100 transition-opacity duration-300 animate-pulse-slow" />
                   <div className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-2 border-teal-400/60 bg-slate-950 shadow-inner">
                     <img
-                      src="/profile.jpg"
+                      src={profileImg}
                       alt="Gopinath Mandal"
                       className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
                     />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, Printer, Copy, Check, Mail, Phone, MapPin } from 'lucide-react';
+import profileImg from '../assets/profile.jpg';
 import { personalInfo, experienceData, projectsData, educationData } from '../data/portfolioData';
 import { soundFx } from '../utils/soundController';
 
@@ -75,7 +76,7 @@ Class X (CBSE, 2020) | 61.66% | Kendriya Vidyalaya, Paradip Port
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl overflow-hidden border border-teal-400/60 bg-slate-950 shrink-0">
               <img
-                src="/profile.jpg"
+                src={profileImg}
                 alt="Gopinath Mandal"
                 className="w-full h-full object-cover object-top"
               />
@@ -128,7 +129,7 @@ Class X (CBSE, 2020) | 61.66% | Kendriya Vidyalaya, Paradip Port
           <div className="flex flex-col sm:flex-row items-center gap-6 pb-6 border-b border-slate-700">
             <div className="w-24 h-24 rounded-2xl overflow-hidden border-2 border-teal-500/40 bg-slate-900 shrink-0">
               <img
-                src="/profile.jpg"
+                src={profileImg}
                 alt="Gopinath Mandal"
                 className="w-full h-full object-cover object-top"
               />

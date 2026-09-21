@@ -9,5 +9,5 @@ export default defineConfig({
     host: true,
     open: false,
   },
-  base: '/',
+  base: '/portfolio/',
 })
