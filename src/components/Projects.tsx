@@ -80,7 +80,7 @@ export const Projects: React.FC = () => {
         origin: { y: 0.7 },
         colors: ['#14b8a6', '#06b6d4'],
       });
-    }, 150);
+    }, 70);
   };
 
   const handleRegenerateQR = () => {

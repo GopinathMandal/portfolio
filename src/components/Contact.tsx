@@ -45,7 +45,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenTerminal }) => {
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setIsSent(false), 5000);
-    }, 1000);
+    }, 280);
   };
 
   return (

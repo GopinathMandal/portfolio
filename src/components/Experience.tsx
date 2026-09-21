@@ -17,7 +17,7 @@ export const Experience: React.FC = () => {
     setSimulatedTime(null);
 
     const targetTime = mode === 'unoptimized' ? 4.8 : 1.5;
-    const simDuration = mode === 'unoptimized' ? 1200 : 400; // Accelerated realistic test for instant UI feedback
+    const simDuration = mode === 'unoptimized' ? 480 : 160; // Ultra-fast realistic benchmark response
     const startTime = Date.now();
 
     const interval = setInterval(() => {
@@ -33,7 +33,7 @@ export const Experience: React.FC = () => {
       } else {
         setSimulatedTime(currentTime);
       }
-    }, 30);
+    }, 16);
   };
 
   return (

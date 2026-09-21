@@ -171,7 +171,7 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({ interactive = true }) 
     };
 
     if (interactive) {
-      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mousemove', handleMouseMove, { passive: true });
     }
 
     // Interactive Click Burst
@@ -179,7 +179,7 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({ interactive = true }) 
       sphereMesh.scale.set(1.15, 1.15, 1.15);
       setTimeout(() => {
         sphereMesh.scale.set(1, 1, 1);
-      }, 300);
+      }, 180);
     };
 
     container.addEventListener('click', handleClick);
@@ -194,7 +194,7 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({ interactive = true }) 
       renderer.setSize(width, height);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     // --- 6. Animation Loop ---
     let animationFrameId: number;
@@ -204,9 +204,9 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({ interactive = true }) 
       animationFrameId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
-      // Smooth camera interpolation
-      targetX += (mouseX - targetX) * 0.05;
-      targetY += (mouseY - targetY) * 0.05;
+      // Smooth camera interpolation with ultra-fast responsiveness
+      targetX += (mouseX - targetX) * 0.12;
+      targetY += (mouseY - targetY) * 0.12;
 
       camera.position.x = targetX * 0.4;
       camera.position.y = -targetY * 0.4;

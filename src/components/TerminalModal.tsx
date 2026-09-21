@@ -42,7 +42,7 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({ isOpen, onClose, o
 
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 100);
+      requestAnimationFrame(() => inputRef.current?.focus());
     }
   }, [isOpen]);
 

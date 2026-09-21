@@ -10,4 +10,22 @@ export default defineConfig({
     open: false,
   },
   base: '/portfolio/',
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('three')) {
+            return 'three-vendor';
+          }
+          if (id.includes('chart.js') || id.includes('react-chartjs-2')) {
+            return 'chart-vendor';
+          }
+          if (id.includes('lucide-react')) {
+            return 'lucide-icons';
+          }
+        },
+      },
+    },
+    chunkSizeWarningLimit: 800,
+  },
 })
