@@ -16,20 +16,24 @@ export const Experience: React.FC = () => {
     setIsSimulating(true);
     setSimulatedTime(null);
 
-    const duration = mode === 'unoptimized' ? 4800 : 1500;
+    const targetTime = mode === 'unoptimized' ? 4.8 : 1.5;
+    const simDuration = mode === 'unoptimized' ? 1200 : 400; // Accelerated realistic test for instant UI feedback
     const startTime = Date.now();
 
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime;
-      if (elapsed >= duration) {
+      const progress = Math.min(1, elapsed / simDuration);
+      const currentTime = Number((progress * targetTime).toFixed(2));
+
+      if (progress >= 1) {
         clearInterval(interval);
         setIsSimulating(false);
-        setSimulatedTime(duration / 1000);
+        setSimulatedTime(targetTime);
         soundFx.playSuccess();
       } else {
-        setSimulatedTime(Number((elapsed / 1000).toFixed(2)));
+        setSimulatedTime(currentTime);
       }
-    }, 50);
+    }, 30);
   };
 
   return (
@@ -136,8 +140,25 @@ export const Experience: React.FC = () => {
                 Test the exact query optimization achieved during the internship by running the benchmark simulator below:
               </p>
 
-              {/* Mode Selector */}
+              {/* Mode Selector - Optimized Response Time First */}
               <div className="grid grid-cols-2 gap-2 mb-4">
+                <button
+                  onClick={() => runBenchmark('optimized')}
+                  disabled={isSimulating}
+                  className={`p-3 rounded-xl border text-left transition-all ${
+                    activeBenchmark === 'optimized'
+                      ? 'bg-emerald-950/50 border-emerald-500/70 text-white shadow-lg shadow-emerald-950/30 ring-1 ring-emerald-400/40'
+                      : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:border-slate-700'
+                  }`}
+                >
+                  <div className="text-[11px] font-mono text-emerald-400 font-bold flex items-center justify-between">
+                    <span>1. OPTIMIZED (Current)</span>
+                    <span className="text-[10px] bg-emerald-900/60 px-1.5 py-0.5 rounded text-emerald-300">Fast ⚡</span>
+                  </div>
+                  <div className="text-xl font-extrabold text-emerald-300 mt-1">~1.5 Seconds</div>
+                  <div className="text-[10px] text-slate-300 mt-0.5">Indexed columns &amp; query deduplication (-68%)</div>
+                </button>
+
                 <button
                   onClick={() => runBenchmark('unoptimized')}
                   disabled={isSimulating}
@@ -147,23 +168,9 @@ export const Experience: React.FC = () => {
                       : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:border-slate-700'
                   }`}
                 >
-                  <div className="text-[11px] font-mono text-rose-400 font-semibold">BEFORE (Original)</div>
-                  <div className="text-lg font-bold text-rose-300 mt-0.5">~4.8 Seconds</div>
-                  <div className="text-[10px] text-slate-400">Redundant queries &amp; unindexed table</div>
-                </button>
-
-                <button
-                  onClick={() => runBenchmark('optimized')}
-                  disabled={isSimulating}
-                  className={`p-3 rounded-xl border text-left transition-all ${
-                    activeBenchmark === 'optimized'
-                      ? 'bg-emerald-950/40 border-emerald-500/60 text-white'
-                      : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:border-slate-700'
-                  }`}
-                >
-                  <div className="text-[11px] font-mono text-emerald-400 font-semibold">AFTER (Optimized)</div>
-                  <div className="text-lg font-bold text-emerald-300 mt-0.5">~1.5 Seconds</div>
-                  <div className="text-[10px] text-slate-400">Indexed columns &amp; query deduplication</div>
+                  <div className="text-[11px] font-mono text-rose-400 font-semibold">2. BEFORE (Legacy)</div>
+                  <div className="text-xl font-bold text-rose-300/90 mt-1">~4.8 Seconds</div>
+                  <div className="text-[10px] text-slate-400 mt-0.5">Redundant queries &amp; unindexed table</div>
                 </button>
               </div>
 
